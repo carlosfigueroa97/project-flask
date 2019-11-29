@@ -16,7 +16,3 @@ def graph_dataframe(route, columnName, option, nameGraph):
         plt.plot(df[columnName], 'b--')
     plt.savefig("{}.png".format(nameGraph))
 
-def show_csv(file):
-    df = read_csv(file)
-    return df.index
-

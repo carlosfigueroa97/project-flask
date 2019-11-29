@@ -8,11 +8,6 @@
     <title>Mostar Datos</title>
 </head>
 <body>
-    <!--<div class="col-4 align-self-center">
-        <form class="input-group" role="form">
-            <input type="text" name="fileUpload" class="form-control" value="{{file}}" readonly>
-        </form>
-    </div>-->
     {% for table in tables %}
         {{table|safe}}
     {% endfor %}
