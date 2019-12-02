@@ -6,7 +6,8 @@
     {% endfor %}
     <div class="input-group">
         <form action="/message" method="POST">
-            <input type="text" name="columnName" class="form-control" placeholder="Nombre de la columna" required>
+            <input type="text" name="columnY" class="form-control" placeholder="Nombre de la columna (Y)" required>
+            <input type="text" name="columnX" class="form-control" placeholder="Nombre de la columna (X)" required>
             <label>Seleccione una gráfica: </label>
             <select name="option">
                 <option value="barra">Barras</option>

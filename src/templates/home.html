@@ -2,8 +2,8 @@
 
 {% block content %}
     <div class="input-group">
-        <form action="/uploadFile", method="POST">
-            <input type="text" name="fileUpload" class="form-control" placeholder="Ingrese la ruta del archivo" required>
+        <form action="/uploadFile", method="POST" enctype="multipart/form-data">
+            <input type="file" name="fileUpload">
             <button type="submit" class="btn btn-primary">Subir</button>
         </form>
     </div>

@@ -1,9 +1,11 @@
+import os
 from flask import Flask, render_template, request
+from werkzeug import secure_filename
 from methods import *
 
-file = ""
-
+file2 = ""
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = './pdfs'
 
 @app.route('/')
 def index():
@@ -11,19 +13,30 @@ def index():
 
 @app.route('/uploadFile', methods=['POST'])
 def upload_file():
-    global file
-    file = request.form['fileUpload']
-    response = read_csv(file)
-    df = response.head()
-    return render_template("uploadFile.html", tables=[df.to_html(classes='data', header="true")], titles=df.columns.values)
+    try:
+        global file2
+        if(request.method == "POST"):
+            file = request.files['fileUpload']
+            filename = secure_filename(file.filename)
+            file2 = filename
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            response = read_csv(filename)
+            df = response.head()
+        return render_template("uploadFile.html", tables=[df.to_html(classes='data', header="true")], titles=df.columns.values)
+    except SystemError as err:
+        print(err)
 
 @app.route('/message', methods=['POST'])
 def meessage():
-    columnName = request.form['columnName']
-    option = request.form['option']
-    nameGraph = request.form['nameGraph']
-    graph_dataframe(file, columnName, option, nameGraph)
-    return render_template("message.html")
+    try:
+        columnY = request.form['columnY']
+        columnX = request.form['columnX']
+        option = request.form['option']
+        nameGraph = request.form['nameGraph']
+        graph_dataframe(file2, columnY, columnX, option, nameGraph)
+        return render_template("message.html")
+    except SystemError as err:
+        print(err)
 
 @app.errorhandler(404)
 def page_not_found(error):
