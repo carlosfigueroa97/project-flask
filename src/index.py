@@ -5,7 +5,7 @@ from methods import *
 
 file2 = ""
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = './pdfs'
+app.config['UPLOAD_FOLDER'] = './pdfs/'
 
 @app.route('/')
 def index():
@@ -18,7 +18,7 @@ def upload_file():
         if(request.method == "POST"):
             file = request.files['fileUpload']
             filename = secure_filename(file.filename)
-            file2 = filename
+            file2 = filename    
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             response = read_csv(filename)
             df = response.head()
@@ -44,3 +44,4 @@ def page_not_found(error):
 
 if __name__ == '__main__':
     app.run(port=80, debug=True)
+    
