@@ -20,8 +20,8 @@
 <body style="background: powderblue; " class="conten">
     <h1 style="text-align: center;">GRÁFICA GUARDADA...</h1><br><br>
     <div class="conten">
-        {% if image %}
-            <img src={{image}}>
+        {% if url %}
+            <img src="{{url_for('send_file', filename=url)}}">
         {% else %}
             <h1>No se pudo cargar la imagen</h1>
         {% endif %}

@@ -1,9 +1,10 @@
 import os
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 from werkzeug import secure_filename
 from methods import *
 
 file2 = ""
+nameImg = ""
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './pdfs/'
 app.config['IMG_FOLDER'] = './img/'
@@ -36,9 +37,15 @@ def meessage():
         nameGraph = request.form['nameGraph']
         plt = graph_dataframe(file2, columnY, columnX, option, nameGraph, app)
         image = app.config['IMG_FOLDER'] + nameGraph + ".png"
-        return render_template("message.html", filename = plt.show(), image = image)
+        nameImg = nameGraph
+        print(image)
+        return render_template("message.html", url = nameGraph + ".png")
     except SystemError as err:
         print(err)
+
+@app.route('/plot/<filename>')
+def send_file(filename):
+    return send_from_directory(app.config['IMG_FOLDER'], filename)
 
 @app.errorhandler(404)
 def page_not_found(error):
