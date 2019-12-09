@@ -10,13 +10,12 @@ def graph_dataframe(route, columnY, columnX, option, nameGraph, app):
     try:
         df = read_csv(route)
         if(option == 'barra'):
-            fig = plt.hist(df[columnY], df[columnX])
+            plt.hist(df[columnY], df[columnX])
         elif option == 'pastel':
-            fig = plt.pie(df[columnY], labels=df[columnX])
+            plt.pie(df[columnY], labels=df[columnX])
         else:
-            fig = plt.plot(df[columnY], 'b--')
+            plt.plot(df[columnY], 'b--')
         plt.savefig(os.path.join(app.config['IMG_FOLDER']) + "{}.png".format(nameGraph))
-        return fig
     except SystemError as err:
         print(err)
 

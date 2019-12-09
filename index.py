@@ -4,7 +4,6 @@ from werkzeug import secure_filename
 from methods import *
 
 file2 = ""
-nameImg = ""
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = './pdfs/'
 app.config['IMG_FOLDER'] = './img/'
@@ -35,10 +34,7 @@ def meessage():
         columnX = request.form['columnX']
         option = request.form['option']
         nameGraph = request.form['nameGraph']
-        plt = graph_dataframe(file2, columnY, columnX, option, nameGraph, app)
-        image = app.config['IMG_FOLDER'] + nameGraph + ".png"
-        nameImg = nameGraph
-        print(image)
+        graph_dataframe(file2, columnY, columnX, option, nameGraph, app)
         return render_template("message.html", url = nameGraph + ".png")
     except SystemError as err:
         print(err)
