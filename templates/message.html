@@ -17,8 +17,15 @@
     <hr>
     <hr>    
 </head> 
-<body style="background: powderblue; ">
+<body style="background: powderblue; " class="conten">
     <h1 style="text-align: center;">GRÁFICA GUARDADA...</h1><br><br>
+    <div class="conten">
+        {% if image %}
+            <img src={{image}}>
+        {% else %}
+            <h1>No se pudo cargar la imagen</h1>
+        {% endif %}
+    </div>
     <p style="text-align: center;">
         <button type="button" class="btn btn-primary" onclick="location.href='/'" style="background-color: red;">Terminar</button>
     </p>
