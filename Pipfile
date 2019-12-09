@@ -9,6 +9,7 @@ verify_ssl = true
 gunicorn = "*"
 flask = "*"
 request = "*"
+pandas = "*"
 werkzeug = "*"
 
 [requires]
