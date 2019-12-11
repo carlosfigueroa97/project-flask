@@ -11,7 +11,7 @@ def graph_dataframe(filename, columnY, columnX, option, nameGraph, app):
         print(filename)
         df = read_csv(filename)
         if(option == 'barra'):
-            plt.hist(df[columnY], df[columnX])
+            plt.step(df[columnY], df[columnX])
         elif option == 'pastel':
             plt.pie(df[columnY], labels=df[columnX])
         else:
