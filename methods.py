@@ -13,7 +13,7 @@ def graph_dataframe(filename, columnY, columnX, option, nameGraph, app):
         if(option == 'barra'):
             plt.step(df[columnY], df[columnX])
         elif option == 'pastel':
-            plt.pie(df[columnY], labels=df[columnX])
+            plt.scatter(df[columnY], df[columnX])
         else:
             plt.plot(df[columnY], 'b--')
         plt.savefig(os.path.join(app.config['IMG_FOLDER']) + "{}.png".format(nameGraph))
