@@ -48,5 +48,5 @@ def page_not_found(error):
     return "<h1>Página no encontrada</h1>"
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
     
