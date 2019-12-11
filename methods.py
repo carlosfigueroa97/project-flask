@@ -6,9 +6,10 @@ def read_csv(file):
     df = pd.read_csv('./pdfs/' + file)
     return df
 
-def graph_dataframe(route, columnY, columnX, option, nameGraph, app):
+def graph_dataframe(filename, columnY, columnX, option, nameGraph, app):
     try:
-        df = read_csv(route)
+        print(filename)
+        df = read_csv(filename)
         if(option == 'barra'):
             plt.hist(df[columnY], df[columnX])
         elif option == 'pastel':
